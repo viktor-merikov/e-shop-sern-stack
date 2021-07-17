@@ -13,13 +13,13 @@ const NavBar = observer(() => {
                 <NavLink style={{color: 'white'}} to={SHOP_ROUTE}>EShop</NavLink>
                 {
                     user.isAuth ?
-                        <Nav className="m-auto" style={{color: 'white'}}>
+                        <Nav className="ms-auto" style={{color: 'white'}}>
                             <Button variant={"outline-light"}>Admin panel</Button>
-                            <Button variant={"outline-light"} className="me-lg-0" onClick={() => user.setIsAuth(false)}>Sign
+                            <Button variant={"outline-light"} className="ms-3" onClick={() => user.setIsAuth(false)}>Sign
                                 out</Button>
                         </Nav>
                         :
-                        <Nav className="m-auto" style={{color: 'white'}}>
+                        <Nav className="ms-auto" style={{color: 'white'}}>
                             <Button variant={"outline-light"} onClick={() => user.setIsAuth(true)}>Sign in</Button>
                         </Nav>
                 }
