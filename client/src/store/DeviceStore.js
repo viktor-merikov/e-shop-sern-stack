@@ -2,59 +2,14 @@ import {makeAutoObservable} from "mobx";
 
 export default class DeviceStore {
     constructor() {
-        this._types = [
-            {id: 1, name: 'Freezers'},
-            {id: 2, name: 'Smartphones'},
-            {id: 3, name: 'Televisions'},
-            {id: 4, name: 'Washers'}
-        ];
-        this._brands = [
-            {id: 1, name: 'LG'},
-            {id: 2, name: 'Samsung'},
-            {id: 3, name: 'Lenovo'},
-            {id: 4, name: 'Apple'}
-        ];
-        this._devices = [
-            {
-                id: 1,
-                name: "iPhone 12 pro",
-                price: 1199,
-                rating: 5,
-                img: 'https://d3m9l0v76dty0.cloudfront.net/system/photos/5866581/original/37e349de497d60cd058aa443b7c76bbd.jpg'
-            },
-            {
-                id: 2,
-                name: "iPhone 12 pro",
-                price: 1199,
-                rating: 5,
-                img: 'https://d3m9l0v76dty0.cloudfront.net/system/photos/5866581/original/37e349de497d60cd058aa443b7c76bbd.jpg'
-            },
-            {
-                id: 3,
-                name: "iPhone 12 pro",
-                price: 1199,
-                rating: 5,
-                img: 'https://d3m9l0v76dty0.cloudfront.net/system/photos/5866581/original/37e349de497d60cd058aa443b7c76bbd.jpg'
-            },
-            {
-                id: 4,
-                name: "iPhone 12 pro",
-                price: 1199,
-                rating: 5,
-                img: 'https://d3m9l0v76dty0.cloudfront.net/system/photos/5866581/original/37e349de497d60cd058aa443b7c76bbd.jpg'
-            },
-            {
-                id: 5,
-                name: "iPhone 12 pro",
-                price: 1199,
-                rating: 5,
-                img: 'https://d3m9l0v76dty0.cloudfront.net/system/photos/5866581/original/37e349de497d60cd058aa443b7c76bbd.jpg'
-            }
-        ]
-
+        this._types = [];
+        this._brands = [];
+        this._devices = [];
         this._selectedType = {};
         this._selectedBrand = {};
-
+        this._page = 1;
+        this._totalCount = 0;
+        this._limit = 3;
         makeAutoObservable(this);
     }
 
@@ -78,6 +33,18 @@ export default class DeviceStore {
         this._selectedBrand = brand;
     }
 
+    setPage(page) {
+        this._page = page;
+    }
+
+    setTotalCount(totalCount) {
+        this._totalCount = totalCount;
+    }
+
+    setLimit(limit) {
+        this._limit = limit;
+    }
+
     get devices() {
         return this._devices;
     }
@@ -91,11 +58,26 @@ export default class DeviceStore {
     }
 
     get selectedType() {
+        this.setPage(1);
         return this._selectedType;
     }
 
     get selectedBrand() {
+        this.setPage(1);
         return this._selectedBrand;
     }
+
+    get page() {
+        return this._page;
+    }
+
+    get totalCount() {
+        return this._totalCount;
+    }
+
+    get limit() {
+        return this._limit;
+    }
+
 
 }
